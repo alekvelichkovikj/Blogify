@@ -443,6 +443,7 @@ body > div > div:nth-child(1) > figure > figcaption > div > a:hover {
   width: 100%;
   margin: auto;
   position: fixed;
+  z-index: 2;
 }
 
 .footer-content {
