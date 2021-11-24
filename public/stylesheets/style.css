@@ -352,10 +352,6 @@ input {
   margin: 0 10px;
 }
 
-.nav ul a:hover {
-  color: var(--red);
-}
-
 /* Profile Main */
 .profile-container {
   display: flex;
@@ -500,7 +496,7 @@ body > div > div:nth-child(1) > figure > figcaption > div > a:hover {
   align-items: center;
   justify-content: space-between;
   max-width: 900px;
-  margin: 50px auto;
+  margin: 50px auto 100px auto;
 }
 
 .details-container p {
@@ -528,6 +524,9 @@ body > div > div:nth-child(1) > figure > figcaption > div > a:hover {
   align-items: center;
 }
 
-/* Edit Blog Post Page */
+/* Guest Page */
+#guest-btn {
+  margin: 100px !important;
+}
 
 /* Media Queries */
