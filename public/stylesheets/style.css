@@ -15,7 +15,6 @@ a {
   text-decoration: none;
 }
 
-h1,
 h2,
 h3,
 h4,
@@ -27,6 +26,7 @@ h5 {
 
 h1 {
   font-size: 50px;
+  color: var(--light);
 }
 
 /* Variables */
@@ -99,7 +99,7 @@ h1 {
   color: var(--light);
   background-color: var(--red);
   border-radius: 5px;
-  margin-top: 80px;
+  margin-top: 50px;
   width: 100%;
   padding: 15px 0;
   cursor: pointer;
@@ -175,14 +175,12 @@ h1 {
 
 .container-form h1 {
   color: var(--light);
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
 form {
   height: 760px;
   width: 450px;
-  border: 2px solid #f1f1f1;
-  border-radius: 15px;
   padding: 10px 35px;
   color: var(--light);
 }
@@ -200,9 +198,13 @@ form * {
 }
 
 form h3 {
-  font-size: 36px;
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
+}
+
+form h4 {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 label {
@@ -211,13 +213,44 @@ label {
   font-size: 14px;
 }
 
+.file {
+  opacity: 0;
+  width: 0.1px;
+  height: 0.1px;
+  position: absolute;
+}
+
+.file-input label {
+  display: block;
+  position: relative;
+  border: 1px solid #3f3f3f;
+  border-radius: 5px;
+  padding: 10px 0;
+  color: var(--light);
+  cursor: pointer;
+  text-align: center;
+  width: 180px;
+  transition: transform 0.2s ease-out;
+}
+
+.file-input label:hover,
+.file-input label:focus {
+  border: 1px solid #c01527;
+}
+
+.file-name {
+  position: absolute;
+  color: var(--light);
+  font-size: 12px;
+}
+
 input {
   display: inline-block;
   height: 50px;
   width: 100%;
-  background-color: var(--dark);
+  background-color: #1a1a1a;
   color: var(--light);
-  border: 1px solid #f1f1f1;
+  border: 0.5px solid #3f3f3f;
   border-radius: 5px;
   padding: 0 10px;
   margin-top: 8px;
@@ -314,6 +347,15 @@ input {
   justify-content: center;
 }
 
+.nav ul a {
+  color: var(--light);
+  margin: 0 10px;
+}
+
+.nav ul a:hover {
+  color: var(--red);
+}
+
 /* Profile Main */
 .profile-container {
   display: flex;
@@ -353,6 +395,10 @@ input {
   vertical-align: top;
 }
 
+.edit-image {
+  text-align: center;
+}
+
 .profile-card figcaption {
   width: 100%;
   background-color: var(--light);
@@ -371,6 +417,17 @@ input {
   font-size: 0.9em;
   letter-spacing: 1px;
   opacity: 0.9;
+  margin-bottom: 20px;
+}
+
+body > div > div:nth-child(1) > figure > figcaption > div > a {
+  padding: 10px 20px;
+  transition: 0.3s ease-in;
+}
+
+body > div > div:nth-child(1) > figure > figcaption > div > a:hover {
+  background-color: #99101f;
+  color: var(--light);
 }
 
 .profile-container div:nth-child(2) > h3 {
@@ -383,6 +440,7 @@ input {
 
 #main-footer {
   border-top: 1px solid #f1f1f1;
+  background-color: #1a1a1a;
   color: #fff;
   left: 0;
   bottom: 0;
@@ -398,18 +456,41 @@ input {
 /* Showroom Page */
 .grid-container {
   display: grid;
-  margin: 100px 150px;
-  grid-template-columns: repeat(3, 1fr);
+  margin: 100px 200px;
+  grid-template-columns: repeat(2, 1fr);
   gap: 50px;
   text-align: center;
 }
 
+.blog-box {
+  display: block;
+  width: 600px;
+}
+
 .blog-box p {
+  display: inline-block;
   color: var(--light);
+  margin: 30px 10px;
+  padding: 0;
 }
 
 .blog-box a {
   font-size: 16px;
+}
+
+.ellipsis {
+  height: 100px;
+  width: 600px;
+  position: relative;
+  display: inline-block;
+  text-overflow: ellipsis;
+  text-align: start;
+  overflow: hidden;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  white-space: wrap;
+  color: var(--light);
 }
 
 /* Detail Page */
@@ -423,7 +504,7 @@ input {
 }
 
 .details-container p {
-  color: var(--light);
+  color: var(--light) !important;
 }
 
 .details-container h3 {

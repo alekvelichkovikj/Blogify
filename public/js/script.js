@@ -77,15 +77,30 @@ tinymce.init({
   plugins: [
     'advlist autolink lists link image charmap print preview anchor',
     'searchreplace visualblocks code fullscreen',
-    'insertdatetime media table paste code help wordcount',
+    'insertdatetime media table paste imagetools code help wordcount',
     'pageembed code preview',
   ],
   toolbar:
     'undo redo | formatselect | ' +
     'bold italic backcolor | alignleft aligncenter ' +
-    'alignright alignjustify | bullist numlist outdent indent | ' +
-    'removeformat | help' +
-    'pageembed code preview',
+    'alignright alignjustify | bullist numlist outdent indent |  ' +
+    'removeformat | help ' +
+    'pageembed code preview ' +
+    'link image',
   content_style:
-    'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+    'body { font-family:Helvetica,Arial,sans-serif; font-size:14px;margin:1rem;}',
+})
+
+// Profile Input File Upload
+const file = document.querySelector('#file')
+file.addEventListener('change', (e) => {
+  // Get the selected file
+  const [file] = e.target.files
+  // Get the file name and size
+  const { name: fileName, size } = file
+  // Convert size in bytes to kilo bytes
+  const fileSize = (size / 1000).toFixed(2)
+  // Set the text content
+  const fileNameAndSize = `${fileName} - ${fileSize}KB`
+  document.querySelector('.file-name').textContent = fileNameAndSize
 })
