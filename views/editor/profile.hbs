@@ -1,7 +1,8 @@
 <nav class='nav'>
   <div class='nav-container'>
-    <h1>Blogify</h1>
+    <a href='/'><h1>Blogify</h1></a>
     <ul>
+      <li><a href='/profile'>My Profile</a></li>
       <li><a href='/logout' class='btn-logout'>Log Out</a></li>
     </ul>
   </div>
@@ -14,7 +15,10 @@
         {{#if imageUrl}}
           <img src='{{imageUrl}}' alt='profile image' />
         {{else}}
-          <img src="https://source.unsplash.com/random/800x600" alt="profile image">
+          <img
+            src='https://source.unsplash.com/random/800x600'
+            alt='profile image'
+          />
         {{/if}}
       </div>
       <figcaption>
@@ -23,9 +27,11 @@
         <p>
           {{bio}}
         </p>
+        <div>
+          <a class='btn-form-small' href='/profile/edit'>Edit profile</a>
+        </div>
       </figcaption>
     </figure>
-    <a href="/profile/edit">Edit profile</a>
   </div>
 
   <div>

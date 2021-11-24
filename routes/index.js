@@ -11,9 +11,12 @@ router.get('/', isLoggedOut, (req, res, next) => {
 
 // View Blog Posts Route
 router.get('/view', (req, res, next) => {
-  Post.find()
+  const id = req.session.user._id
+  Post.find({ editorId: id })
     .populate('editorId')
     .then((postFromDB) => {
+      console.log(postFromDB)
+
       res.render('viewBlogPosts', { post: postFromDB })
     })
 })

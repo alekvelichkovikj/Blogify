@@ -1,7 +1,8 @@
 <nav class='nav'>
   <div class='nav-container'>
-    <h1>Blogify</h1>
+    <a href='/'><h1>Blogify</h1></a>
     <ul>
+      <li><a href='/profile'>My Profile</a></li>
       <li><a href='/logout' class='btn-logout'>Log Out</a></li>
     </ul>
   </div>
@@ -10,11 +11,16 @@
 <div class='grid-container'>
   {{#each post}}
     <div class='blog-box'>
-      {{#with editorId}}
-        <h3>Written by: {{username}}</h3>
-      {{/with}}
-      <p>{{title}}</p>
-      <a class='btn-logout' href='/details/{{_id}}'><span>Read More</span></a>
+      <h4>{{title}}</h4>
+      <div class='ellipsis'>
+        {{{content}}}
+      </div>
+      <div>
+        {{#with editorId}}
+          <p>Written by: {{username}}</p>
+        {{/with}}
+        <a class='btn-dark' href='/details/{{_id}}'><span>Read More</span></a>
+      </div>
     </div>
   {{/each}}
 </div>
