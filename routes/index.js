@@ -43,17 +43,11 @@ router.post('/edit/:id', (req, res, next) => {
 
 //detail route
 router.get('/details/:id', (req, res, next) => {
-  // let visible = 'hidden'
-  
-  // if (req.session.user){
-  //   visible = 'visible'
-  // }
   let user = req.session.user
 
   Post.findById(req.params.id)
     .populate('editorId')
     .then((postFromDb) => {
-      console.log(user)
       res.render('details', {post:postFromDb, user: user})
     })
     .catch((err) => next(err))
