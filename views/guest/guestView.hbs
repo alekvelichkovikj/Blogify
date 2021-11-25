@@ -1,31 +1,20 @@
 <nav class='nav'>
   <div class='nav-container'>
-    <h1>Blogify</h1>
+    <a href='/'><h1>Blogify</h1></a>
     <ul>
-      
-      <a href="/signUp"><button  type='submit' class='btn-form'>Sign Up</button></a>
+      <li><a href='/signup' class='btn-logout'>Sign Up</a></li>
+      <li><a class='btn-dark' href='/guest/guestView'><span>See a random post</span></a></li>
     </ul>
   </div>
 </nav>
 
+<div class='details-container'>
 
-
-<div class='title'>
-      <h3>View a Random Blogify Post</h3>
-      <a class='btn-dark' href='/guest/guestView'>Click for another Post</a>
-    </div>
-  </div>
-
-
-
-
-{{#with post}}
-<h3>{{title}}</h3>
-<h3>{{content}}</h3>
-{{/with}}
-
-
-
+  {{#with post}}
+    <h3>{{title}}</h3>
+    <p>{{{content}}}</p>
+  {{/with}}
+</div>
 
 <footer id='main-footer' class='text-center p-4'>
   <div class='footer-content'>

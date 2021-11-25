@@ -1,3 +1,13 @@
+<nav class='nav'>
+  <div class='nav-container'>
+    <a href='/'><h1>Blogify</h1></a>
+    <ul>
+      <li><a href='/profile'>My Profile</a></li>
+      <li><a href='/logout' class='btn-logout'>Log Out</a></li>
+    </ul>
+  </div>
+</nav>
+
 <div>
   {{#with post}}
     <div class='details-container'>
@@ -21,13 +31,27 @@
 
         <div>
           {{#with visible}}
-          <a class='btn-dark' href='/edit/{{_id}}' style='visibility:{{visible}}'>Edit Post</a>
-          <a class='btn-logout' href='/details/delete/{{_id}}' style='visibility:{{visible}}'}>Delete Post</a>
+            <a
+              class='btn-dark'
+              href='/edit/{{_id}}'
+              style='visibility:{{visible}}'
+            >Edit Post</a>
+            <a
+              class='btn-logout'
+              href='/details/delete/{{_id}}'
+              style='visibility:{{visible}}'
+            >Delete Post</a>
           {{/with}}
         </div>
 
       </div>
-      <a class='btn-dark' href='/view'><span>View Blog Page</span></a>
+      <a class='btn-red' href='/view'><span>View Blog Page</span></a>
     </div>
   {{/with}}
 </div>
+
+<footer id='main-footer' class='text-center p-4'>
+  <div class='footer-content'>
+    <p>&copy; <span id='year'></span> Blogify</p>
+  </div>
+</footer>

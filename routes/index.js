@@ -27,7 +27,7 @@ router.get('/edit/:id', (req, res, next) => {
 
   Post.findById(id)
     .then((postFromDB) => {
-      res.render('editBlogPost', { post: postFromDB} )
+      res.render('editBlogPost', { post: postFromDB })
     })
     .catch((err) => next(err))
 })
@@ -44,11 +44,11 @@ router.post('/edit/:id', (req, res, next) => {
     .catch((err) => next(err))
 })
 
-//detail route
+//Detail route
 router.get('/details/:id', (req, res, next) => {
   let visible = 'hidden'
-  
-  if (req.session.user){
+
+  if (req.session.user) {
     visible = 'visible'
   }
 
@@ -57,7 +57,7 @@ router.get('/details/:id', (req, res, next) => {
     .then((postFromDb) => {
       console.log(postFromDb)
       // console.log({...postFromDb, visible: visible})
-      res.render('details', {post:postFromDb, visible: visible})
+      res.render('details', { post: postFromDb, visible: visible })
     })
     .catch((err) => next(err))
 })
