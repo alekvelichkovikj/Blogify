@@ -22,7 +22,7 @@ router.get('/view', (req, res, next) => {
     })
 })
 
-router.get('/:username', (req, res, next) => {
+router.get('/view/:username', (req, res, next) => {
   const username = req.params.username
   Editor.find({username : username})
     .then((editorFromDB) => {
@@ -103,7 +103,7 @@ router.get('/details/delete/:id',isLoggedIn, (req, res, next) => {
 
   Post.findByIdAndDelete(id)
     .then(() => {
-      res.redirect('/profile')
+      res.redirect('/view')
     })
     .catch((err) => {
       next(err)
