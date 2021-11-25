@@ -12,12 +12,14 @@ router.get('/', isLoggedOut, (req, res, next) => {
 // View Blog Posts Route
 router.get('/view', (req, res, next) => {
   const editorId = req.session.user._id
+  let user = req.session.user
+
   Post.find({ editorId })
     .populate('editorId')
     .then((postFromDB) => {
       console.log(postFromDB)
 
-      res.render('viewBlogPosts', { post: postFromDB, docName: 'Blog Posts' })
+      res.render('viewBlogPosts', { post: postFromDB,user:user, docName: 'Blog Posts' })
 
     })
 })
