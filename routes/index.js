@@ -19,6 +19,20 @@ router.get('/view', (req, res, next) => {
     })
 })
 
+router.get('/:username', (req, res, next) => {
+  const username = req.params.username
+  Editor.find({username : username})
+    .then((editorFromDB) => {
+     const editorId = editorFromDB[0]._id
+     Post.find({editorId})
+     .populate('editorId')
+     .then(postFromDB => {
+       res.render('viewBlogPosts', {post : postFromDB})
+     })
+    })
+})
+
+
 // Create Edit Post Routes
 router.get('/edit/:id', (req, res, next) => {
   const id = req.params.id
@@ -29,6 +43,12 @@ router.get('/edit/:id', (req, res, next) => {
     })
     .catch((err) => next(err))
 })
+
+
+
+
+
+
 
 router.post('/edit/:id', (req, res, next) => {
   const { title, content } = req.body
