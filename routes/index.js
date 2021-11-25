@@ -35,7 +35,6 @@ router.get('/view/:username', (req, res, next) => {
     })
 })
 
-
 // Create Edit Post Routes
 router.get('/edit/:id',isLoggedIn, (req, res, next) => {
   const id = req.params.id
@@ -46,12 +45,6 @@ router.get('/edit/:id',isLoggedIn, (req, res, next) => {
     })
     .catch((err) => next(err))
 })
-
-
-
-
-
-
 
 router.post('/edit/:id', (req, res, next) => {
   const { title, content } = req.body
