@@ -22,7 +22,7 @@ router.get('/view', (req, res, next) => {
     })
 })
 
-router.get('/:username', (req, res, next) => {
+router.get('/view/:username', (req, res, next) => {
   const username = req.params.username
   Editor.find({username : username})
     .then((editorFromDB) => {
