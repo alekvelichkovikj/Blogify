@@ -8,13 +8,12 @@ const {fileUploader, cloudinary} = require('../config/cloudinary');
 
 
 router.get('/profile', isLoggedIn,(req,res,next) => {
-    res.send('hello')
-    // const id = req.session.user._id;
+    const id = req.session.user._id;
     
-    // Editor.findById(id)
-    //     .then(foundUser => {
-    //         res.render('editor/profile', foundUser)
-    //     })
+    Editor.findById(id)
+         .then(foundUser => {
+             res.render('editor/profile', foundUser)
+         })
 })
 
 router.get('/logout', isLoggedIn, (req, res, next) => {
