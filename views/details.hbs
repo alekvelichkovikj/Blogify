@@ -43,7 +43,14 @@
         </div>
 
       </div>
+      {{#if username}}
+        <a class='btn-red' href='/view/{{username}}'><span>View Blog Page</span></a>
+      {{/if}}
+
+      {{#if user}}
       <a class='btn-red' href='/view'><span>View Blog Page</span></a>
+      {{/if}}
+
     </div>
 
   

@@ -56,7 +56,7 @@ router.post(
         const salt = bcrypt.genSaltSync()
         const hash = bcrypt.hashSync(password, salt)
         Editor.create({
-          username: username,
+          username: username.toLowerCase(),
           password: hash,
           name: name,
           bio: bio,

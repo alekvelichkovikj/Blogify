@@ -1,10 +1,12 @@
 <nav class='nav'>
   <div class='nav-container'>
     <a href='/'><h1>Blogify</h1></a>
-    <ul>
-      <li><a href='/profile'>My Profile</a></li>
-      <li><a href='/logout' class='btn-logout'>Log Out</a></li>
-    </ul>
+    {{#if user}}
+      <ul>
+        <li><a href='/profile'>My Profile</a></li>
+        <li><a href='/logout' class='btn-logout'>Log Out</a></li>
+      </ul>
+    {{/if}}
   </div>
 </nav>
 
