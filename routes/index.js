@@ -15,8 +15,6 @@ router.get('/view', (req, res, next) => {
   Post.find({ editorId: id })
     .populate('editorId')
     .then((postFromDB) => {
-      console.log(postFromDB)
-
       res.render('viewBlogPosts', { post: postFromDB })
     })
 })
@@ -34,11 +32,9 @@ router.get('/edit/:id', (req, res, next) => {
 
 router.post('/edit/:id', (req, res, next) => {
   const { title, content } = req.body
-  // const editorId = req.session.user._id
 
   Post.findByIdAndUpdate(req.params.id, { title, content }, { new: true })
     .then((updatedPost) => {
-      // console.log(updatedPost)
       res.redirect(`/details/${updatedPost._id}`)
     })
     .catch((err) => next(err))
@@ -62,7 +58,6 @@ router.get('/details/:id', (req, res, next) => {
 
 // Create Blog Post Route
 router.get('/create', isLoggedIn, (req, res, next) => {
-  console.log(req.session.user)
   res.render('createBlogPost')
 })
 
