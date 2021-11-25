@@ -517,13 +517,18 @@ body > div > div:nth-child(1) > figure > figcaption > div > a:hover {
 .create {
   width: 850px;
   border-style: none;
-  margin: 20px auto;
+  margin: 20px auto 100px auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
 }
 
-/* Guest Page */
-
 /* Media Queries */
+/* Ipads */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+}
+
+/* Iphone X */
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+}

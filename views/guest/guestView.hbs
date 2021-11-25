@@ -11,19 +11,21 @@
 <div class='details-container'>
 
   {{#with post}}
-    <h3>{{title}}</h3>
-    <p>{{{content}}}</p>
+    <div>
+      <h3>{{title}}</h3>
+      <p>{{{content}}}</p>
+    </div>
+
+    {{#with editorId}}
+      <div>
+        <h3>
+          Written by:
+          {{username}}
+        </h3>
+      </div>
+    {{/with}}
   {{/with}}
 </div>
-
-{{#with editorId}}
-  <div>
-    <h3>
-      Written by:
-      {{username}}
-    </h3>
-  </div>
-{{/with}}
 
 <footer id='main-footer' class='text-center p-4'>
   <div class='footer-content'>
