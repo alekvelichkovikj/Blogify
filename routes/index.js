@@ -18,11 +18,12 @@ router.get('/view', (req, res, next) => {
       console.log(postFromDB)
 
       res.render('viewBlogPosts', { post: postFromDB, docName: 'Blog Posts' })
+
     })
 })
 
 // Create Edit Post Routes
-router.get('/edit/:id', (req, res, next) => {
+router.get('/edit/:id',isLoggedIn, (req, res, next) => {
   const id = req.params.id
 
   Post.findById(id)
@@ -62,6 +63,7 @@ router.get('/details/:id', (req, res, next) => {
 router.get('/create', isLoggedIn, (req, res, next) => {
   console.log(req.session.user)
   res.render('createBlogPost', { docName: 'Create Post' })
+
 })
 
 router.post('/create', (req, res, next) => {
@@ -76,7 +78,7 @@ router.post('/create', (req, res, next) => {
 })
 
 // Delete Post Route
-router.get('/details/delete/:id', (req, res, next) => {
+router.get('/details/delete/:id',isLoggedIn, (req, res, next) => {
   const id = req.params.id
 
   Post.findByIdAndDelete(id)
