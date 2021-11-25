@@ -9,6 +9,7 @@ body {
   font-weight: 300;
   margin: 0;
   padding: 0;
+  color: var(--light);
 }
 
 a {
@@ -57,8 +58,6 @@ h1 {
 
 .btn-red {
   display: inline-block;
-  /* width: 300px;
-  height: 45px; */
   padding: 5px 50px;
   line-height: 40px;
   font-size: var(--btn-font);
@@ -495,17 +494,17 @@ body > div > div:nth-child(1) > figure > figcaption > div > a:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   max-width: 900px;
   margin: 50px auto 100px auto;
 }
 
 .details-container p {
-  color: var(--light) !important;
+  color: var(--light);
 }
 
 .details-container h3 {
-  margin: 80px 100px;
+  margin: 40px 50px;
 }
 
 .details-author {
@@ -526,8 +525,5 @@ body > div > div:nth-child(1) > figure > figcaption > div > a:hover {
 }
 
 /* Guest Page */
-#guest-btn {
-  margin: 100px !important;
-}
 
 /* Media Queries */

@@ -6,18 +6,18 @@ const Editor = require('../models/Editor')
 
 /* GET home page */
 router.get('/', isLoggedOut, (req, res, next) => {
-  res.render('index')
+  res.render('index', { docName: 'Home Page' })
 })
 
 // View Blog Posts Route
 router.get('/view', (req, res, next) => {
-  const id = req.session.user._id
-  Post.find({ editorId: id })
+  const editorId = req.session.user._id
+  Post.find({ editorId })
     .populate('editorId')
     .then((postFromDB) => {
       console.log(postFromDB)
 
-      res.render('viewBlogPosts', { post: postFromDB })
+      res.render('viewBlogPosts', { post: postFromDB, docName: 'Blog Posts' })
     })
 })
 
@@ -27,35 +27,33 @@ router.get('/edit/:id', (req, res, next) => {
 
   Post.findById(id)
     .then((postFromDB) => {
-      res.render('editBlogPost', { post: postFromDB })
+      res.render('editBlogPost', { post: postFromDB, docName: 'Edit Post' })
     })
     .catch((err) => next(err))
 })
 
 router.post('/edit/:id', (req, res, next) => {
   const { title, content } = req.body
-  // const editorId = req.session.user._id
 
   Post.findByIdAndUpdate(req.params.id, { title, content }, { new: true })
     .then((updatedPost) => {
-      // console.log(updatedPost)
       res.redirect(`/details/${updatedPost._id}`)
     })
     .catch((err) => next(err))
 })
 
-//Detail route
+//Detail Route
 router.get('/details/:id', (req, res, next) => {
-
   let user = req.session.user
-
 
   Post.findById(req.params.id)
     .populate('editorId')
     .then((postFromDb) => {
-
-      res.render('details', {post:postFromDb, user: user})
-
+      res.render('details', {
+        post: postFromDb,
+        user: user,
+        docName: 'Read More',
+      })
     })
     .catch((err) => next(err))
 })
@@ -63,13 +61,13 @@ router.get('/details/:id', (req, res, next) => {
 // Create Blog Post Route
 router.get('/create', isLoggedIn, (req, res, next) => {
   console.log(req.session.user)
-  res.render('createBlogPost')
+  res.render('createBlogPost', { docName: 'Create Post' })
 })
 
 router.post('/create', (req, res, next) => {
   const { title, content } = req.body
   const editorId = req.session.user._id
-  
+
   Post.create({ title, content, editorId })
     .then((createdPost) => {
       res.redirect(`/details/${createdPost._id}`)
@@ -80,6 +78,7 @@ router.post('/create', (req, res, next) => {
 // Delete Post Route
 router.get('/details/delete/:id', (req, res, next) => {
   const id = req.params.id
+
   Post.findByIdAndDelete(id)
     .then(() => {
       res.redirect('/profile')
