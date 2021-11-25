@@ -10,7 +10,7 @@ router.get('/', isLoggedOut, (req, res, next) => {
 })
 
 // View Blog Posts Route
-router.get('/view', (req, res, next) => {
+router.get('/view',isLoggedIn, (req, res, next) => {
   const id = req.session.user._id
   Post.find({ editorId: id })
     .populate('editorId')
@@ -20,7 +20,7 @@ router.get('/view', (req, res, next) => {
 })
 
 // Create Edit Post Routes
-router.get('/edit/:id', (req, res, next) => {
+router.get('/edit/:id',isLoggedIn, (req, res, next) => {
   const id = req.params.id
 
   Post.findById(id)
@@ -73,7 +73,7 @@ router.post('/create', (req, res, next) => {
 })
 
 // Delete Post Route
-router.get('/details/delete/:id', (req, res, next) => {
+router.get('/details/delete/:id',isLoggedIn, (req, res, next) => {
   const id = req.params.id
   Post.findByIdAndDelete(id)
     .then(() => {
