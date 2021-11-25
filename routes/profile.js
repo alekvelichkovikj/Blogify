@@ -11,9 +11,9 @@ router.get('/profile', isLoggedIn,(req,res,next) => {
     const id = req.session.user._id;
     
     Editor.findById(id)
-         .then(foundUser => {
-             res.render('editor/profile', foundUser)
-         })
+        .then(foundUser => {
+            res.render('editor/profile', foundUser)
+        })
 })
 
 router.get('/logout', isLoggedIn, (req, res, next) => {
@@ -38,7 +38,7 @@ router.get('/profile/edit',isLoggedIn,(req, res, next) => {
 
 router.post('/profile/edit',isLoggedIn, fileUploader.single('profile-image'),(req, res, next) => {
     const id = req.session.user._id;
-    const {bio, email, password} = req.body;
+    const {bio, name, email, password} = req.body;
 
     let imageUrl = req.session.user.imageUrl;
     let imgName = req.session.user.imgName;
@@ -71,6 +71,7 @@ router.post('/profile/edit',isLoggedIn, fileUploader.single('profile-image'),(re
     Editor.findByIdAndUpdate(id, {
         bio: bio,
         email: email,
+        name: name,
         password: hash,
         imageUrl: imageUrl,
         imgName: imgName,

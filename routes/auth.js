@@ -26,7 +26,7 @@ router.post(
   '/signup',
   fileUploader.single('profile-image'),
   (req, res, next) => {
-    const { username, password, bio, email } = req.body
+    const { username, name, password, bio, email } = req.body
 
     let imageUrl = ''
     let imgName = ''
@@ -58,6 +58,7 @@ router.post(
         Editor.create({
           username: username,
           password: hash,
+          name: name,
           bio: bio,
           email: email,
           imageUrl: imageUrl,

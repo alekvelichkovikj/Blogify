@@ -35,7 +35,6 @@ router.get('/view/:username', (req, res, next) => {
     })
 })
 
-
 // Create Edit Post Routes
 router.get('/edit/:id',isLoggedIn, (req, res, next) => {
   const id = req.params.id
@@ -46,12 +45,6 @@ router.get('/edit/:id',isLoggedIn, (req, res, next) => {
     })
     .catch((err) => next(err))
 })
-
-
-
-
-
-
 
 router.post('/edit/:id', (req, res, next) => {
   const { title, content } = req.body
@@ -103,7 +96,7 @@ router.get('/details/delete/:id',isLoggedIn, (req, res, next) => {
 
   Post.findByIdAndDelete(id)
     .then(() => {
-      res.redirect('/profile')
+      res.redirect('/view')
     })
     .catch((err) => {
       next(err)
