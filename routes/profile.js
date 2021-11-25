@@ -11,9 +11,15 @@ router.get('/profile', isLoggedIn,(req,res,next) => {
     const id = req.session.user._id;
     
     Editor.findById(id)
+<<<<<<< HEAD
         .then(foundUser => {
             res.render('editor/profile', foundUser)
         })
+=======
+         .then(foundUser => {
+             res.render('editor/profile', foundUser)
+         })
+>>>>>>> 3fb855e5f07490890bc9f987989eac0cc1cf8d88
 })
 
 router.get('/logout', isLoggedIn, (req, res, next) => {
