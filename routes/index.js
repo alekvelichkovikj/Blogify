@@ -46,18 +46,16 @@ router.post('/edit/:id', (req, res, next) => {
 
 //Detail route
 router.get('/details/:id', (req, res, next) => {
-  let visible = 'hidden'
 
-  if (req.session.user) {
-    visible = 'visible'
-  }
+  let user = req.session.user
+
 
   Post.findById(req.params.id)
     .populate('editorId')
     .then((postFromDb) => {
-      console.log(postFromDb)
-      // console.log({...postFromDb, visible: visible})
-      res.render('details', { post: postFromDb, visible: visible })
+
+      res.render('details', {post:postFromDb, user: user})
+
     })
     .catch((err) => next(err))
 })
@@ -71,11 +69,9 @@ router.get('/create', isLoggedIn, (req, res, next) => {
 router.post('/create', (req, res, next) => {
   const { title, content } = req.body
   const editorId = req.session.user._id
-  // console.log(req.session.user)
-
+  
   Post.create({ title, content, editorId })
     .then((createdPost) => {
-      console.log(createdPost)
       res.redirect(`/details/${createdPost._id}`)
     })
     .catch((err) => next(err))

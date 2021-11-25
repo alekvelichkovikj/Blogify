@@ -28,27 +28,26 @@
             </h3>
           </div>
         {{/with}}
-
+  {{/with}}
+  
         <div>
-          {{#with visible}}
-            <a
-              class='btn-dark'
-              href='/edit/{{_id}}'
-              style='visibility:{{visible}}'
-            >Edit Post</a>
-            <a
-              class='btn-logout'
-              href='/details/delete/{{_id}}'
-              style='visibility:{{visible}}'
-            >Delete Post</a>
-          {{/with}}
+
+          {{#if user}}
+            <a class='btn-dark' href='/edit/{{_id}}'>Edit Post</a>
+            <a class='btn-logout' href='/details/delete/{{_id}}'>Delete Post</a>
+          
+          {{/if}}
+
+
         </div>
 
       </div>
       <a class='btn-red' href='/view'><span>View Blog Page</span></a>
     </div>
-  {{/with}}
+
+  
 </div>
+
 
 <footer id='main-footer' class='text-center p-4'>
   <div class='footer-content'>
