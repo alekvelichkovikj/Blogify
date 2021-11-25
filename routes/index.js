@@ -30,7 +30,7 @@ router.get('/view/:username', (req, res, next) => {
      Post.find({editorId})
      .populate('editorId')
      .then(postFromDB => {
-       res.render('viewBlogPosts', {post : postFromDB, username: username})
+       res.render('viewBlogPosts', {post : postFromDB})
      })
     })
 })
