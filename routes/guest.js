@@ -8,10 +8,10 @@ router.get('/guest/guestView', (req, res, next) => {
     .then((postFromDB) => {
       res.render('guest/guestView', {
         post: postFromDB[Math.floor(Math.random() * postFromDB.length)],
+        docName: 'Random Post',
       })
     })
+    .catch((err) => next(err))
 })
-
-
 
 module.exports = router

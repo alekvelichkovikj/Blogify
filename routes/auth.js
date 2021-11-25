@@ -15,64 +15,68 @@ const isLoggedOut = require('../middleware/isLoggedOut')
 const isLoggedIn = require('../middleware/isLoggedIn')
 const Editor = require('../models/Editor')
 
-const {fileUploader, cloudinary} = require('../config/cloudinary');
+const { fileUploader, cloudinary } = require('../config/cloudinary')
 
-
-router.get("/signup", isLoggedOut, (req, res, next) => {
-  res.render('signUp');
-});
-
-router.post('/signup', fileUploader.single('profile-image'),(req, res, next) => {
-  const { username, password, bio, email } = req.body
-
-  let imageUrl = ''
-  let imgName = ''
-  let publicId = ''
-
-  if (req.file) {
-    imageUrl = req.file.path
-    imgName = req.file.originalname
-    publicId = req.file.filename
-  }
-
-  if (password.length < 8) {
-    res.render('signUp', {
-      errorMessage: 'Your password needs to be at least 8 characters long.',
-    })
-    return
-  }
-  if (username.length === 0) {
-    res.render('signUp', { errorMessage: 'Your username cannot be empty.' })
-    return
-  }
-
-  Editor.findOne({ username: username }).then((editorFromDB) => {
-    if (editorFromDB !== null) {
-      res.render('signUp', { errorMessage: 'Your username is already taken' })
-    } else {
-      const salt = bcrypt.genSaltSync()
-      const hash = bcrypt.hashSync(password, salt)
-      Editor.create({
-        username: username,
-        password: hash,
-        bio: bio,
-        email: email,
-        imageUrl: imageUrl,
-        imgName: imgName,
-        publicId: publicId
-      })
-        .then((editorFromDB) => {
-          req.session.user = editorFromDB
-          res.redirect('/profile')
-        })
-        .catch((err) => next(err))
-    }
-  })
+// SignUp Route
+router.get('/signup', isLoggedOut, (req, res, next) => {
+  res.render('signUp', { docName: 'Sign Up' })
 })
 
-// Login routes
+router.post(
+  '/signup',
+  fileUploader.single('profile-image'),
+  (req, res, next) => {
+    const { username, password, bio, email } = req.body
+
+    let imageUrl = ''
+    let imgName = ''
+    let publicId = ''
+
+    if (req.file) {
+      imageUrl = req.file.path
+      imgName = req.file.originalname
+      publicId = req.file.filename
+    }
+
+    if (password.length < 8) {
+      res.render('signUp', {
+        errorMessage: 'Your password needs to be at least 8 characters long.',
+      })
+      return
+    }
+    if (username.length === 0) {
+      res.render('signUp', { errorMessage: 'Your username cannot be empty.' })
+      return
+    }
+
+    Editor.findOne({ username: username }).then((editorFromDB) => {
+      if (editorFromDB !== null) {
+        res.render('signUp', { errorMessage: 'Your username is already taken' })
+      } else {
+        const salt = bcrypt.genSaltSync()
+        const hash = bcrypt.hashSync(password, salt)
+        Editor.create({
+          username: username,
+          password: hash,
+          bio: bio,
+          email: email,
+          imageUrl: imageUrl,
+          imgName: imgName,
+          publicId: publicId,
+        })
+          .then((editorFromDB) => {
+            req.session.user = editorFromDB
+            res.redirect('/profile')
+          })
+          .catch((err) => next(err))
+      }
+    })
+  }
+)
+
+// Login Route
 router.get('/login', isLoggedOut, (req, res, next) => {
-  res.render('logIn')
+  res.render('logIn', { docName: 'Log In' })
 })
 
 router.post('/login', isLoggedOut, (req, res, next) => {
