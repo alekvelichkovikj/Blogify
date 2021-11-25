@@ -11,9 +11,12 @@ router.get('/', isLoggedOut, (req, res, next) => {
 
 // View Blog Posts Route
 router.get('/view', (req, res, next) => {
-  Post.find()
+  const id = req.session.user._id
+  Post.find({ editorId: id })
     .populate('editorId')
     .then((postFromDB) => {
+      console.log(postFromDB)
+
       res.render('viewBlogPosts', { post: postFromDB })
     })
 })
@@ -24,7 +27,7 @@ router.get('/edit/:id', (req, res, next) => {
 
   Post.findById(id)
     .then((postFromDB) => {
-      res.render('editBlogPost', { post: postFromDB} )
+      res.render('editBlogPost', { post: postFromDB })
     })
     .catch((err) => next(err))
 })
@@ -41,14 +44,18 @@ router.post('/edit/:id', (req, res, next) => {
     .catch((err) => next(err))
 })
 
-//detail route
+//Detail route
 router.get('/details/:id', (req, res, next) => {
+
   let user = req.session.user
+
 
   Post.findById(req.params.id)
     .populate('editorId')
     .then((postFromDb) => {
+
       res.render('details', {post:postFromDb, user: user})
+
     })
     .catch((err) => next(err))
 })
