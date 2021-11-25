@@ -2,18 +2,6 @@
   <form action='/profile/edit' method='POST' enctype='multipart/form-data'>
     <h4>Edit profile</h4>
 
-    <div class='edit-image'>
-      {{#if imageUrl}}
-        <img src='{{imageUrl}}' alt='profile image' height='250px' />
-      {{else}}
-        <img
-          height='250px'
-          src='https://source.unsplash.com/random/800x600'
-          alt='profile image'
-        />
-      {{/if}}
-    </div>
-
     <label for='username'>Your username</label>
     <input
       type='text'
@@ -24,10 +12,16 @@
     />
 
     <label for='name'>Enter your name</label>
-    <input type='text' id='name' name='name' value='{{name}}'/>
+    <input type='text' id='name' name='name' value='{{name}}' />
 
     <label for='bio'> Your bio</label>
-    <textarea type='text' id='bio' name='bio' rows="5" cols="45">{{bio}}</textarea>
+    <textarea
+      type='text'
+      id='bio'
+      name='bio'
+      rows='5'
+      cols='45'
+    >{{bio}}</textarea>
 
     <label for='email'>Enter your email</label>
     <input type='text' id='email' name='email' value='{{email}}' />
